@@ -22,21 +22,6 @@ import { HeroService } from './hero.service';
       display: block;
       padding: 16px;
     }
-
-    paper-input[label="Name"] {
-      --paper-input-container-label: {
-        @apply(--paper-font-display1);
-        transition: transform 0.25s, width 0.25s, font 0.25s;
-      };
-
-      --paper-input-container-label-floating: {
-        @apply(--paper-font-subhead);
-      };
-
-      --paper-input-container-input: {
-        @apply(--paper-font-display1);
-      };
-    }
   `]
 })
 export class HeroDetailComponent implements OnInit {
