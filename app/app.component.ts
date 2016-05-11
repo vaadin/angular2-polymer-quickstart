@@ -10,26 +10,29 @@ import { HeroDetailComponent } from './hero-detail.component';
   selector: 'my-app',
   template: `
     <paper-scroll-header-panel fixed>
-      <paper-toolbar>
-        <paper-icon-button icon="close" *ngIf="isInChildView" (click)="goBack()"></paper-icon-button>
+      <paper-toolbar [class.raised]="isInChildView">
+        <paper-icon-button icon="arrow-back" *ngIf="isInChildView" (click)="goBack()"></paper-icon-button>
         <div class="title">{{title}}</div>
       </paper-toolbar>
       <router-outlet></router-outlet>
     </paper-scroll-header-panel>
   `,
   styles: [`
-    my-app {
-      display: block;
-    }
-
-    my-app,
     paper-scroll-header-panel {
       height: 100%;
+    }
+
+    paper-toolbar.raised {
+      @apply(--shadow-elevation-4dp);
     }
 
     paper-toolbar paper-icon-button {
       margin-left: -8px;
       margin-right: 24px;
+    }
+
+    paper-toolbar .title {
+      margin-left: 56px;
     }
   `],
   encapsulation: ViewEncapsulation.None,
@@ -74,7 +77,6 @@ export class AppComponent {
       let routeData: RouteData = _router.currentInstruction.component.routeData;
       this.title = routeData.get('title');
       this.isInChildView = !routeData.get('root');
-      console.log(this.isInChildView);
     });
   }
 
