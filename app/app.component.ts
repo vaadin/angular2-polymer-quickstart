@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation, OnInit } from '@angular/core';
 import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS, Router, RouteData } from '@angular/router-deprecated';
 import { PolymerElement } from 'vaadin-ng2-polymer/polymer-element';
 
@@ -68,13 +68,15 @@ import { HeroDetailComponent } from './hero-detail.component';
     }
   }
 ])
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = '';
   isInChildView = false;
 
-  constructor(private _router: Router) {
-    _router.subscribe(() => {
-      let routeData: RouteData = _router.currentInstruction.component.routeData;
+  constructor(private _router: Router) { }
+
+  ngOnInit() {
+    this._router.subscribe(() => {
+      let routeData: RouteData = this._router.currentInstruction.component.routeData;
       this.title = routeData.get('title');
       this.isInChildView = !routeData.get('root');
     });
