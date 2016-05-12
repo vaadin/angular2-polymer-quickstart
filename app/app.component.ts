@@ -34,8 +34,11 @@ import { HeroDetailComponent } from './hero-detail.component';
     paper-toolbar .title {
       margin-left: 56px;
     }
+
+    paper-toolbar paper-icon-button + .title {
+      margin-left: 0;
+    }
   `],
-  encapsulation: ViewEncapsulation.None,
   directives: [
     ROUTER_DIRECTIVES,
     PolymerElement('paper-scroll-header-panel'),
