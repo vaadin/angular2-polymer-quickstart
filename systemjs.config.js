@@ -13,8 +13,7 @@
   var packages = {
     'app':                        { main: 'main.js',  defaultExtension: 'js' },
     'rxjs':                       { defaultExtension: 'js' },
-    'angular2-in-memory-web-api': { defaultExtension: 'js' },
-    '@vaadin/angular2-polymer':   { defaultExtension: 'js' }
+    'angular2-in-memory-web-api': { defaultExtension: 'js' }
   };
 
   var packageNames = [
@@ -26,7 +25,8 @@
     '@angular/platform-browser-dynamic',
     '@angular/router-deprecated',
     '@angular/testing',
-    '@angular/upgrade'
+    '@angular/upgrade',
+    '@vaadin/angular2-polymer'
   ];
 
   // add package entries for angular packages in the form '@angular/common': { main: 'index.js', defaultExtension: 'js' }
