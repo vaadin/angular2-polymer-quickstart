@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router-deprecated';
-import { PolymerElement } from 'vaadin-ng2-polymer/polymer-element';
+import { PolymerElement } from '@vaadin/angular2-polymer/polymer-element';
 
 import { Hero } from './hero';
 import { HeroService } from './hero.service';

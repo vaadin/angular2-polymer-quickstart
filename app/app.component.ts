@@ -1,6 +1,6 @@
 import { Component, ViewEncapsulation, OnInit } from '@angular/core';
 import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS, Router, RouteData } from '@angular/router-deprecated';
-import { PolymerElement } from 'vaadin-ng2-polymer/polymer-element';
+import { PolymerElement } from '@vaadin/angular2-polymer/polymer-element';
 
 import { HeroService } from './hero.service';
 import { HeroesComponent } from './heroes.component';

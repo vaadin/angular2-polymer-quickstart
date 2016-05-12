@@ -5,7 +5,7 @@
     'app':                        'app', // 'dist',
     'rxjs':                       'node_modules/rxjs',
     'angular2-in-memory-web-api': 'node_modules/angular2-in-memory-web-api',
-    'vaadin-ng2-polymer':         'node_modules/vaadin-ng2-polymer',
+    '@vaadin':                    'node_modules/@vaadin',
     '@angular':                   'node_modules/@angular'
   };
 
@@ -14,7 +14,7 @@
     'app':                        { main: 'main.js',  defaultExtension: 'js' },
     'rxjs':                       { defaultExtension: 'js' },
     'angular2-in-memory-web-api': { defaultExtension: 'js' },
-    'vaadin-ng2-polymer':         { defaultExtension: 'js' }
+    '@vaadin/angular2-polymer':   { defaultExtension: 'js' }
   };
 
   var packageNames = [
@@ -26,7 +26,7 @@
     '@angular/platform-browser-dynamic',
     '@angular/router-deprecated',
     '@angular/testing',
-    '@angular/upgrade',
+    '@angular/upgrade'
   ];
 
   // add package entries for angular packages in the form '@angular/common': { main: 'index.js', defaultExtension: 'js' }
