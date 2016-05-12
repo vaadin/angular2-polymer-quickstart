@@ -5,15 +5,14 @@
   "authors": [
     "Anton Platonov <platosha@gmail.com>"
   ],
-  "license": "ISC",
+  "license": "Apache-2.0",
   "homepage": "",
   "private": true,
   "ignore": [
     "**/.*",
     "node_modules",
     "bower_components",
-    "test",
-    "tests"
+    "test"
   ],
   "dependencies": {
     "polymer": "Polymer/polymer#^1.4.0",
