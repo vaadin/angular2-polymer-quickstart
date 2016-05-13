@@ -43,11 +43,14 @@ export class HeroesComponent implements OnInit {
     this.getHeroes();
   }
 
+  goToHeroDetailById(id: number) {
+    this._router.navigate(['HeroDetail', { id: id }]);
+  }
+
   onSelectedItemsChanged(event: any) {
     let selectedIndex: number = event.target.selection.selected()[0];
     if (selectedIndex !== undefined) {
-      let selectedHeroId: number = this.heroes[selectedIndex].id;
-      this._router.navigate( ['HeroDetail', { id: selectedHeroId }] );
+      this.goToHeroDetailById(this.heroes[selectedIndex].id);
     }
   }
 }

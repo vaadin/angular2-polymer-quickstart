@@ -86,6 +86,6 @@ export class AppComponent implements OnInit {
   }
 
   goBack() {
-    window.history.back();
+    this._router.navigate(['Heroes']);
   }
 }
