@@ -1,4 +1,4 @@
-# angular2-polymer-elements-quickstart
+# angular2-polymer-quickstart
 
 ## Installation
 
