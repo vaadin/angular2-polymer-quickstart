@@ -9,40 +9,37 @@ import { HeroDetailComponent } from './hero-detail.component';
 @Component({
   selector: 'my-app',
   template: `
-    <paper-scroll-header-panel fixed>
-      <paper-toolbar [class.raised]="isInChildView">
-        <paper-icon-button icon="arrow-back" *ngIf="isInChildView" (click)="goBack()"></paper-icon-button>
-        <div class="title">{{title}}</div>
-      </paper-toolbar>
+    <app-header-layout has-scrolling-region>
+      <app-header fixed>
+        <app-toolbar [class.raised]="isInChildView">
+          <paper-icon-button icon="arrow-back" *ngIf="isInChildView" (click)="goBack()"></paper-icon-button>
+          <div title spacer>{{title}}</div>
+        </app-toolbar>
+      </app-header>
       <router-outlet></router-outlet>
-    </paper-scroll-header-panel>
+    </app-header-layout>
   `,
   styles: [`
-    paper-scroll-header-panel {
-      height: 100%;
+    app-toolbar {
+      background: var(--primary-color);
+      color: var(--dark-theme-text-color);
     }
 
-    paper-toolbar.raised {
+    app-toolbar.raised {
       @apply(--shadow-elevation-4dp);
     }
 
-    paper-toolbar paper-icon-button {
-      margin-left: -8px;
-      margin-right: 24px;
-    }
-
-    paper-toolbar .title {
-      margin-left: 56px;
-    }
-
-    paper-toolbar paper-icon-button + .title {
-      margin-left: 0;
+    paper-icon-button {
+      position: absolute;
+      top: 12px;
+      left: 8px;
     }
   `],
   directives: [
     ROUTER_DIRECTIVES,
-    PolymerElement('paper-scroll-header-panel'),
-    PolymerElement('paper-toolbar'),
+    PolymerElement('app-header-layout'),
+    PolymerElement('app-header'),
+    PolymerElement('app-toolbar'),
     PolymerElement('paper-icon-button')
   ],
   providers: [
