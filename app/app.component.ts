@@ -43,8 +43,7 @@ import { HeroDetailComponent } from './hero-detail.component';
     ROUTER_DIRECTIVES,
     PolymerElement('paper-scroll-header-panel'),
     PolymerElement('paper-toolbar'),
-    PolymerElement('paper-icon-button'),
-    HeroesComponent
+    PolymerElement('paper-icon-button')
   ],
   providers: [
     ROUTER_PROVIDERS,
