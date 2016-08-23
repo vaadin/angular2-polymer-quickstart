@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router-deprecated';
-import { PolymerElement } from '@vaadin/angular2-polymer';
+import { Router } from '@angular/router';
 
 import { Hero } from './hero';
 import { HeroService } from './hero.service';
@@ -22,10 +21,7 @@ import { HeroService } from './hero.service';
     vaadin-grid {
       height: 100%;
     }
-  `],
-  directives: [
-    PolymerElement('vaadin-grid')
-  ]
+  `]
 })
 export class HeroesComponent implements OnInit {
   heroes: Hero[];
@@ -43,14 +39,14 @@ export class HeroesComponent implements OnInit {
     this.getHeroes();
   }
 
-  goToHeroDetailById(id: number) {
-    this._router.navigate(['HeroDetail', { id: id }]);
+  onSelect(hero: Hero) {
+    this._router.navigate(['/heroes', hero.id]);
   }
 
   onSelectedItemsChanged(event: any) {
     let selectedIndex: number = event.target.selection.selected()[0];
     if (selectedIndex !== undefined) {
-      this.goToHeroDetailById(this.heroes[selectedIndex].id);
+      this.onSelect(this.heroes[selectedIndex]);
     }
   }
 }

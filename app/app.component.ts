@@ -1,10 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS, Router, RouteData } from '@angular/router-deprecated';
-import { PolymerElement } from '@vaadin/angular2-polymer';
-
-import { HeroService } from './hero.service';
-import { HeroesComponent } from './heroes.component';
-import { HeroDetailComponent } from './hero-detail.component';
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'my-app',
@@ -34,54 +30,34 @@ import { HeroDetailComponent } from './hero-detail.component';
       top: 12px;
       left: 8px;
     }
-  `],
-  directives: [
-    ROUTER_DIRECTIVES,
-    PolymerElement('app-header-layout'),
-    PolymerElement('app-header'),
-    PolymerElement('app-toolbar'),
-    PolymerElement('paper-icon-button')
-  ],
-  providers: [
-    ROUTER_PROVIDERS,
-    HeroService
-  ]
+  `]
 })
-@RouteConfig([
-  {
-    path: '/heroes',
-    name: 'Heroes',
-    component: HeroesComponent,
-    useAsDefault: true,
-    data: {
-      title: 'All heroes',
-      root: true
-    }
-  },
-  {
-    path: '/heroes/:id',
-    name: 'HeroDetail',
-    component: HeroDetailComponent,
-    data: {
-      title: 'Hero detail'
-    }
-  }
-])
 export class AppComponent implements OnInit {
   title = '';
   isInChildView = false;
+  private _routerSubscription: Subscription;
 
-  constructor(private _router: Router) { }
+  constructor(private _route: ActivatedRoute,
+              private _router: Router) { }
 
   ngOnInit() {
-    this._router.subscribe(() => {
-      let routeData: RouteData = this._router.currentInstruction.component.routeData;
-      this.title = routeData.get('title');
-      this.isInChildView = !routeData.get('root');
+    this._routerSubscription = this._router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        let route = this._route.snapshot;
+        while (route.firstChild) {
+          route = route.firstChild;
+        }
+        this.title = route.data['title'];
+        this.isInChildView = !route.data['root'];
+      }
     });
   }
 
+  ngOnDestroy() {
+    this._routerSubscription.unsubscribe();
+  }
+
   goBack() {
-    this._router.navigate(['Heroes']);
+    this._router.navigate(['/heroes']);
   }
 }
