@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { RouteParams } from '@angular/router-deprecated';
-import { PolymerElement } from '@vaadin/angular2-polymer';
+import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs/Subscription';
 
 import { Hero } from './hero';
 import { HeroService } from './hero.service';
@@ -13,10 +13,6 @@ import { HeroService } from './hero.service';
       <vaadin-date-picker label="Birthday" [(value)]="hero.birthday"></vaadin-date-picker>
     </div>
   `,
-  directives: [
-    PolymerElement('paper-input'),
-    PolymerElement('vaadin-date-picker')
-  ],
   styles: [`
     :host {
       display: block;
@@ -26,14 +22,21 @@ import { HeroService } from './hero.service';
 })
 export class HeroDetailComponent implements OnInit {
   hero: Hero;
+  private _routeParamsSubscription: Subscription;
 
   constructor(
-    private _routeParams: RouteParams,
+    private _route: ActivatedRoute,
     private _heroService: HeroService
   ) { }
 
   ngOnInit() {
-    let id = +this._routeParams.get('id');
-    this._heroService.getHero(id).then(hero => this.hero = hero);
+    this._routeParamsSubscription = this._route.params.subscribe(params => {
+      let id = +params['id']; // (+) converts string 'id' to a number
+      this._heroService.getHero(id).then(hero => this.hero = hero);
+    });
+  }
+
+  ngOnDestroy() {
+    this._routeParamsSubscription.unsubscribe();
   }
 }
